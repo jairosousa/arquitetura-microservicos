@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProdutoService {
 
+  private static final String MESSAGE_EXCEPTION = "No records foud for this ID";
   private final ProdutoRepository produtoRepository;
 
 
@@ -39,7 +40,9 @@ public class ProdutoService {
 
   public ProdutoVO findById(Long id) {
     var entity = produtoRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("No records foud for this ID"));
+        .orElseThrow(() -> {
+          return new ResourceNotFoundException(MESSAGE_EXCEPTION);
+        });
 
     return ProdutoVO.create(entity);
   }
@@ -48,14 +51,14 @@ public class ProdutoService {
     final Optional<Produto> optionalProduto = produtoRepository.findById(produtoVO.getId());
 
     if (!optionalProduto.isPresent()) {
-      throw new ResourceNotFoundException("No records foud for this ID")
+      throw new ResourceNotFoundException(MESSAGE_EXCEPTION);
     }
     return ProdutoVO.create(produtoRepository.save(Produto.create(produtoVO)));
   }
 
   public void delete(Long id) {
     var entity = produtoRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("No records foud for this ID"));
+        .orElseThrow(() -> new ResourceNotFoundException(MESSAGE_EXCEPTION));
 
     produtoRepository.delete(entity);
   }

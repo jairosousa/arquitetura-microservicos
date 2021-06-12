@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.RepresentationModel;
 
 /**
  * Author Jairo Nascimento em 12/06/2021
@@ -22,8 +23,8 @@ import org.modelmapper.ModelMapper;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class ProdutoVO implements Serializable {
+@EqualsAndHashCode(callSuper = false)
+public class ProdutoVO extends RepresentationModel<ProdutoVO> implements Serializable {
 
   private static final long serialVersionUID = -3284413986657665610L;
 
