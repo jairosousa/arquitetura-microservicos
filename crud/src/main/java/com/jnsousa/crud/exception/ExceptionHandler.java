@@ -1,5 +1,6 @@
 package com.jnsousa.crud.exception;
 
+import com.jnsousa.crud.data.vo.ResourceNotFoundException;
 import java.util.Date;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestController
 public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
+  @org.springframework.web.bind.annotation.ExceptionHandler(ResourceNotFoundException.class)
   public final ResponseEntity<ExceptionResponse> handlerBadRequestException(Exception ex,
       WebRequest request) {
     ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
