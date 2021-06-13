@@ -1,5 +1,6 @@
 package com.jnsousa.pagamento.entity;
 
+import com.jnsousa.pagamento.data.vo.VendaVO;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -49,4 +51,8 @@ public class Venda implements Serializable {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "venda", cascade = {CascadeType.REFRESH})
   private List<ProdutoVenda> produtos;
+
+  public static Venda create(VendaVO vendaVO) {
+    return new ModelMapper().map(vendaVO, Venda.class);
+  }
 }

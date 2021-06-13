@@ -2,6 +2,7 @@ package com.jnsousa.pagamento.data.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.jnsousa.pagamento.entity.ProdutoVenda;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -36,7 +37,7 @@ public class ProdutoVendaVO extends RepresentationModel<ProdutoVendaVO> implemen
   @JsonProperty("quantidade")
   private Integer quantidade;
 
-  public static ProdutoVendaVO create(ProdutoVendaVO produtoVenda) {
+  public static ProdutoVendaVO create(ProdutoVenda produtoVenda) {
     return new ModelMapper().map(produtoVenda, ProdutoVendaVO.class);
   }
 

@@ -1,5 +1,6 @@
 package com.jnsousa.pagamento.entity;
 
+import com.jnsousa.pagamento.data.vo.ProdutoVendaVO;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.modelmapper.ModelMapper;
 
 /**
  * Author Jairo Nascimento em 13/06/2021
@@ -46,5 +48,9 @@ public class ProdutoVenda implements Serializable {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id_venda")
   private Venda venda;
+
+  public static ProdutoVenda create(ProdutoVendaVO produtoVenda) {
+    return new ModelMapper().map(produtoVenda, ProdutoVenda.class);
+  }
 
 }
